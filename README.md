@@ -73,4 +73,4 @@ cd rq-challenge
 java -jar build/libs/rqChallenge-0.0.1-SNAPSHOT.jar
 ```
 
-### 5. [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) v10+ to run.
+### 5. [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) to access api documents
