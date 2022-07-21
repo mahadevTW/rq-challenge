@@ -1,9 +1,12 @@
 # Coding Challenge
 
 ### In this assessment you will be tasked with filling out the functionality of different methods that will be listed further down.
+
 These methods will require some level of api interactions with the following base url: https://dummy.restapiexample.com.
-Please keep the following in mind when doing this assessment: clean coding practices, test driven development, logging, and scalability.
-If you are unable to successfully receive responses from the endpoints, mocking the response calls may prove to be helpful.
+Please keep the following in mind when doing this assessment: clean coding practices, test driven development, logging,
+and scalability.
+If you are unable to successfully receive responses from the endpoints, mocking the response calls may prove to be
+helpful.
 
 ### Endpoints to implement
 
@@ -42,77 +45,32 @@ deleteEmployee(String id)
     output - the name of the employee that was deleted
     description - this should delete the employee with specified id given
 
-### External endpoints from base url
-#### This section will outline all available endpoints and their request and response models from https://dummy.restapiexample.com
-/employees
+### Getting started
 
-    request:
-        method: GET
-        parameters: n/a
-        full route: https://dummy.restapiexample.com/api/v1/employees
-    response:
-        {
-            "status": "success",
-            "data": [
-                {
-                "id": "1",
-                "employee_name": "Tiger Nixon",
-                "employee_salary": "320800",
-                "employee_age": "61",
-                "profile_image": ""
-                },
-                ....
-            ]
-        }
+### 1. clone repo
 
-/employee/{id}
+```sh
+git clone git@github.com:mahadevTW/rq-challenge.git
+cd rq-challenge
+```
 
-    request:
-        method: GET
-        parameters: 
-            id (String)
-        full route: https://dummy.restapiexample.com/api/v1/employee/{id}
-    response: 
-        {
-            "status": "success",
-            "data": {
-                "id": "1",
-                "employee_name": "Foo Bar",
-                "employee_salary": "320800",
-                "employee_age": "61",
-                "profile_image": ""
-            }
-        }
+### 2. run tests
 
-/create
+```shell
+./gradlew clean test
+```
 
-    request:
-        method: POST
-        parameters: 
-            name (String),
-            salary (String),
-            age (String)
-        full route: https://dummy.restapiexample.com/api/v1/create
-    response:
-        {
-            "status": "success",
-            "data": {
-                "name": "test",
-                "salary": "123",
-                "age": "23",
-                "id": 25
-            }
-        }
 
-/delete/{id}
+### 3. Build application
 
-    request:
-        method: DELETE
-        parameters:
-            id (String)
-        full route: https://dummy.restapiexample.com/api/v1/delete/{id}
-    response:
-        {
-            "status": "success",
-            "message": "successfully! deleted Record"
-        }
+```shell
+./gradlew clean build
+```
+
+
+### 4. run application
+```shell
+java -jar build/libs/rqChallenge-0.0.1-SNAPSHOT.jar
+```
+
+### 5. [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) v10+ to run.
