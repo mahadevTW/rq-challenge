@@ -123,7 +123,9 @@ public class EmployeeService {
         }
     }
 
-    private List<Employee> fetchEmployees(Optional<Comparator<Employee>> orderBy, Optional<Predicate<Employee>> filter, Optional<Integer> top) {
+    private List<Employee> fetchEmployees(Optional<Comparator<Employee>> orderBy,
+                                          Optional<Predicate<Employee>> filter,
+                                          Optional<Integer> top) {
         ResponseEntity<EmployeesResponse> response = null;
         try {
             response = restTemplate.getForEntity(GET_ALL_EMPLOYEES_URL, EmployeesResponse.class);
