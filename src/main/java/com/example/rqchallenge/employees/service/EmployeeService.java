@@ -2,7 +2,7 @@ package com.example.rqchallenge.employees.service;
 
 import com.example.rqchallenge.employees.exception.EmployeeNotFoundException;
 import com.example.rqchallenge.employees.exception.ExternalApiFailureException;
-import com.example.rqchallenge.employees.exception.NoRecordFoundFoundException;
+import com.example.rqchallenge.employees.exception.NoRecordFoundException;
 import com.example.rqchallenge.employees.exception.TooManyRequestsException;
 import com.example.rqchallenge.employees.model.CreateEmployeeExternalResponse;
 import com.example.rqchallenge.employees.model.Employee;
@@ -65,7 +65,7 @@ public class EmployeeService {
         Comparator<Employee> sortBySalary = (e1, e2) -> e2.getEmployeeSalary() - e1.getEmployeeSalary();
         List<Employee> employees = fetchEmployees(Optional.of(sortBySalary), Optional.empty(), Optional.of(1));
         if (employees.isEmpty()) {
-            throw new NoRecordFoundFoundException("No employee record found");
+            throw new NoRecordFoundException("No employee record found");
         }
         return employees.get(0).getEmployeeSalary();
     }

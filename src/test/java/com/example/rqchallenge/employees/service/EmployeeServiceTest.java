@@ -3,7 +3,7 @@ package com.example.rqchallenge.employees.service;
 import com.example.rqchallenge.TestConfig;
 import com.example.rqchallenge.employees.exception.EmployeeNotFoundException;
 import com.example.rqchallenge.employees.exception.ExternalApiFailureException;
-import com.example.rqchallenge.employees.exception.NoRecordFoundFoundException;
+import com.example.rqchallenge.employees.exception.NoRecordFoundException;
 import com.example.rqchallenge.employees.exception.TooManyRequestsException;
 import com.example.rqchallenge.employees.model.CreateEmployeeExternalResponse;
 import com.example.rqchallenge.employees.model.Employee;
@@ -115,7 +115,7 @@ class EmployeeServiceTest {
         when(restTemplate.getForEntity("/employees", EmployeesResponse.class)).thenReturn(new ResponseEntity<>(sampleEmptyEmployeeResponse(), HttpStatus.OK));
         List<Employee> allEmployees = employeeService.searchEmployees("John");
         assert allEmployees.size() == 0;
-        assertThrows(NoRecordFoundFoundException.class, () -> {
+        assertThrows(NoRecordFoundException.class, () -> {
             employeeService.getHighestEmployeeSalary();
         });
     }
