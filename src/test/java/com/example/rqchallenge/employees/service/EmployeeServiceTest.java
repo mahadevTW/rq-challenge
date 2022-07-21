@@ -45,12 +45,26 @@ class EmployeeServiceTest {
         Mockito.reset(restTemplate);
     }
 
-    //TODO : assert on more data than just count
     @Test
     public void getAllEmployeeSuccess() throws JsonProcessingException {
         when(restTemplate.getForEntity("/employees", EmployeesResponse.class)).thenReturn(new ResponseEntity<>(sampleEmployeesResponse(), HttpStatus.OK));
         List<Employee> allEmployees = employeeService.getAllEmployees();
         assert allEmployees.size() == 3;
+        assertEquals(
+                new Employee("1", "Tiger Nixon", 320800, "61", ""),
+                allEmployees.get(0)
+        );
+
+        assertEquals(
+                new Employee("23", "Caesar Tiger Vance", 106450, "21", ""),
+                allEmployees.get(1)
+        );
+
+        assertEquals(
+                new Employee("24", "Doris Wilder", 85600, "23", ""),
+                allEmployees.get(2)
+        );
+
     }
 
     @Test
@@ -69,26 +83,29 @@ class EmployeeServiceTest {
     public void searchEmployeesReturnsMatchingEmployees() throws JsonProcessingException {
         when(restTemplate.getForEntity("/employees", EmployeesResponse.class))
                 .thenReturn(new ResponseEntity<>(sampleEmployeesResponse(), HttpStatus.OK));
-        List<Employee> allEmployees = employeeService.searchEmployees("Tiger");
-        assertEquals(2, allEmployees.size());
-        Employee employee1 = allEmployees.get(0);
-        assertEquals(employee1.getId(), "1");
-        assertEquals(employee1.getEmployeeName(), "Tiger Nixon");
-        assertEquals(employee1.getEmployeeAge(), "61");
-        assertEquals(employee1.getEmployeeSalary(), Integer.valueOf(320800));
 
-        Employee employee2 = allEmployees.get(1);
-        assertEquals(employee2.getId(), "23");
-        assertEquals(employee2.getEmployeeName(), "Caesar Tiger Vance");
-        assertEquals(employee2.getEmployeeAge(), "21");
-        assertEquals(employee2.getEmployeeSalary(), Integer.valueOf(106450));
+        List<Employee> allEmployees = employeeService.searchEmployees("Tiger");
+
+        assertEquals(2, allEmployees.size());
+        assertEquals(
+                new Employee("1", "Tiger Nixon", 320800, "61", ""),
+                allEmployees.get(0)
+        );
+
+        assertEquals(
+                new Employee("23", "Caesar Tiger Vance", 106450, "21", ""),
+                allEmployees.get(1)
+        );
+
     }
 
     @Test
     public void searchEmployeesReturnsMatchingEmployeesReturnsEmptyResponse() throws JsonProcessingException {
         when(restTemplate.getForEntity("/employees", EmployeesResponse.class))
                 .thenReturn(new ResponseEntity<>(sampleEmployeesResponse(), HttpStatus.OK));
+
         List<Employee> allEmployees = employeeService.searchEmployees("John");
+
         assertEquals(0, allEmployees.size());
     }
 
@@ -96,10 +113,13 @@ class EmployeeServiceTest {
     public void getEmployeeByIdShouldReturnMatchingEmployee() throws JsonProcessingException {
         when(restTemplate.getForEntity("/employee/1", EmployeeResponse.class)).thenReturn(new ResponseEntity<>(sampleEmployeeResponse(), HttpStatus.OK));
         Employee employee = employeeService.getEmployeeById("1");
-        assertEquals(employee.getId(), "1");
-        assertEquals(employee.getEmployeeName(), "Tiger Nixon");
-        assertEquals(employee.getEmployeeAge(), "61");
-        assertEquals(employee.getEmployeeSalary(), Integer.valueOf(320800));
+
+        assertEquals(
+                new Employee("1", "Tiger Nixon", 320800, "61", ""),
+                employee
+        );
+
+
     }
 
     @Test

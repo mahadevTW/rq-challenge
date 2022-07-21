@@ -37,7 +37,7 @@ class RqChallengeApplicationTests {
     ObjectMapper mapper = new ObjectMapper();
 
     @Test
-    public void contextLoads() throws Exception {
+    public void contextLoads() {
         Assertions.assertThat(employeeController).isNotNull();
     }
 
